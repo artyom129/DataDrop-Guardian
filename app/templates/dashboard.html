@@ -1,0 +1,11 @@
+{% extends "base.html" %}{% block content %}
+<section class="hero"><div><span>Automated file intake</span><h1>Validate every incoming file before it reaches production.</h1><p>CSV and JSON files are fingerprinted, checked against schemas, accepted, or quarantined with exact row-level errors.</p></div><div><a class="btn primary" href="/files">Review files</a><a class="btn" href="/exports/files.xlsx">Export Excel</a></div></section>
+<section class="stats"><article><small>Total files</small><strong>{{stats.total}}</strong></article><article><small>Accepted</small><strong>{{stats.accepted}}</strong></article><article><small>Quarantined</small><strong>{{stats.quarantined}}</strong></article><article><small>Duplicates</small><strong>{{stats.duplicates}}</strong></article><article><small>Success rate</small><strong>{{stats.success_rate}}%</strong></article></section>
+<div class="grid"><section class="panel"><span class="eyebrow">Live demo</span><h2>Create a test file</h2><p>Each button processes a real file through the production pipeline.</p>
+<form action="/demo/valid" method="post"><button class="demo good"><b>Valid file</b><small>Correct columns and values</small></button></form>
+<form action="/demo/invalid" method="post"><button class="demo bad"><b>Invalid file</b><small>Bad email, date, balance and duplicate row</small></button></form>
+<form action="/demo/duplicate" method="post"><button class="demo warn"><b>Duplicate file</b><small>Same SHA-256 fingerprint</small></button></form>
+<form action="/upload" method="post" enctype="multipart/form-data" class="upload"><b>Upload CSV or JSON</b><input type="file" name="file" required><button class="btn primary">Process</button></form>
+</section><section class="panel"><span class="eyebrow">Audit queue</span><h2>Latest files</h2><table><thead><tr><th>File</th><th>Rows</th><th>Errors</th><th>Status</th></tr></thead><tbody>
+{% for row in rows %}<tr><td><a href="/files/{{row.id}}">{{row.filename}}</a><small>{{row.pipeline_id or '—'}}</small></td><td>{{row.row_count}}</td><td>{{row.error_count}}</td><td><i class="{{row.status}}">{{row.status}}</i></td></tr>{% else %}<tr><td colspan="4">No files yet.</td></tr>{% endfor %}
+</tbody></table></section></div>{% endblock %}

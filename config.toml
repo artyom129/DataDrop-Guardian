@@ -1,0 +1,70 @@
+[app]
+name = "DataDrop Guardian"
+database_path = "data/datadrop.db"
+
+[monitor]
+scan_interval_seconds = 1.0
+incoming_dir = "data/incoming"
+processed_dir = "data/processed"
+quarantine_dir = "data/quarantine"
+
+[[pipelines]]
+id = "customer_export"
+name = "Customer Export"
+filename_pattern = "(?i).*customer.*\\.(csv|json)$"
+duplicate_key = ["customer_id"]
+
+[[pipelines.fields]]
+name = "customer_id"
+type = "integer"
+required = true
+minimum = 1
+
+[[pipelines.fields]]
+name = "name"
+type = "text"
+required = true
+
+[[pipelines.fields]]
+name = "email"
+type = "email"
+required = true
+
+[[pipelines.fields]]
+name = "balance"
+type = "decimal"
+required = true
+minimum = 0
+
+[[pipelines.fields]]
+name = "signup_date"
+type = "date"
+required = true
+
+[[pipelines]]
+id = "inventory_export"
+name = "Inventory Export"
+filename_pattern = "(?i).*inventory.*\\.(csv|json)$"
+duplicate_key = ["sku"]
+
+[[pipelines.fields]]
+name = "sku"
+type = "text"
+required = true
+
+[[pipelines.fields]]
+name = "product_name"
+type = "text"
+required = true
+
+[[pipelines.fields]]
+name = "quantity"
+type = "integer"
+required = true
+minimum = 0
+
+[[pipelines.fields]]
+name = "unit_price"
+type = "decimal"
+required = true
+minimum = 0

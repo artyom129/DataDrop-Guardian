@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+.env
+data/*.db
+data/incoming/*
+data/processed/*
+data/quarantine/*
+!data/incoming/.gitkeep
+!data/processed/.gitkeep
+!data/quarantine/.gitkeep

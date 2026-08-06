@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block content %}
+<section class="hero"><div><span>Processing history</span><h1>File audit</h1><p>Search accepted files, quarantined files, duplicates, and validation results.</p></div><div><a class="btn" href="/exports/files.csv">CSV</a><a class="btn primary" href="/exports/files.xlsx">Excel</a></div></section>
+<section class="panel"><form class="filters"><input name="q" value="{{q}}" placeholder="Search filename"><select name="status"><option value="">All statuses</option>{% for x in ['accepted','quarantined','duplicate'] %}<option {% if status==x %}selected{% endif %}>{{x}}</option>{% endfor %}</select><button class="btn primary">Filter</button></form>
+<table><thead><tr><th>File</th><th>Pipeline</th><th>Rows</th><th>Valid</th><th>Invalid</th><th>Duplicates</th><th>Errors</th><th>Status</th></tr></thead><tbody>
+{% for row in rows %}<tr><td><a href="/files/{{row.id}}">{{row.filename}}</a><small>{{row.message}}</small></td><td>{{row.pipeline_id or '—'}}</td><td>{{row.row_count}}</td><td>{{row.valid_rows}}</td><td>{{row.invalid_rows}}</td><td>{{row.duplicate_rows}}</td><td>{{row.error_count}}</td><td><i class="{{row.status}}">{{row.status}}</i></td></tr>{% else %}<tr><td colspan="8">No matching files.</td></tr>{% endfor %}
+</tbody></table></section>{% endblock %}

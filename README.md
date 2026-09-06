@@ -1,3 +1,5 @@
+**English** | [Русский](README_RU.md)
+
 # DataDrop Guardian
 
 A local-first background service that watches an incoming folder, validates CSV and JSON files, detects duplicate files and duplicate rows, quarantines bad data, routes accepted files, and keeps a full audit trail.

@@ -1,11 +1,3 @@
-<a id="english"></a>
-
-<div align="center">
-
-**🇬🇧 English** · [🇷🇺 Русский](#russian)
-
-</div>
-
 # DataDrop Guardian
 
 A local-first background service that watches an incoming folder, validates CSV and JSON files, detects duplicate files and duplicate rows, quarantines bad data, routes accepted files, and keeps a full audit trail.
@@ -90,31 +82,3 @@ pytest -q
 ## Portfolio context
 
 Personal demonstration project. No client data is included.
-
----
-
-<a id="russian"></a>
-
-<div align="center">
-
-[🇬🇧 English](#english) · **🇷🇺 Русский**
-
-</div>
-
-# DataDrop Guardian — Русская версия
-
-Фоновый сервис для проверки входящих CSV и JSON файлов.
-
-Он автоматически:
-
-1. следит за папкой `data/incoming`;
-2. выбирает схему проверки;
-3. проверяет колонки и значения;
-4. ищет дубликаты файлов и строк;
-5. переносит хорошие файлы в `data/processed`;
-6. отправляет плохие файлы в `data/quarantine`;
-7. сохраняет историю и ошибки в SQLite;
-8. показывает статистику в веб-панели;
-9. формирует CSV и Excel отчёты.
-
-На главной странице есть кнопки создания корректного, ошибочного и дублирующего файла.

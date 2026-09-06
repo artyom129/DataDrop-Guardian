@@ -1,3 +1,5 @@
+[English](README.md) | **Русский**
+
 # DataDrop Guardian
 
 Фоновый сервис для проверки входящих CSV и JSON файлов.
